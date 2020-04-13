@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/ninja.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class='container'>
+        <header>
+            <h4>Your Gold:</h4>
+            <div class='count_box'> <span>{{request.session.total}}</span>
+            </div>
+        </header>
+        <div class='box'>
+            <form action='/process_money' method='post'>
+                {% csrf_token %}
+                <h3>Farm</h3>
+                <p>(earns 10-20 golds)</p>
+                <input type="hidden" name="location" value="farm">
+                <input type="submit" name='process_money' value="Find Gold!">
+            </form>
+        </div>
+        <div class='box'>
+            <form action='/process_money' method='post'>
+                {% csrf_token %}
+                <h3>Cave</h3>
+                <p>(earns 5-10 golds)</p>
+                <input type="hidden" name="location" value="Cave">
+                <input type="submit" name='process_money' value="Find Gold!">
+            </form>
+        </div>
+        <div class='box'>
+            <form action='/process_money' method='post'>
+                {% csrf_token %}
+                <h3>House</h3>
+                <p>(earns 2-5 golds)</p>
+                <input type="hidden" name="location" value="House">
+                <input type="submit" name='process_money' value="Find Gold!">
+            </form>
+        </div>
+        <div class='box'>
+            <form action='/process_money' method='post'>
+                {% csrf_token %}
+                <h3>Casino</h3>
+                <p>(earns/takes 0-50 golds)</p>
+                <input type="hidden" name="location" value="Casino">
+                <input type="submit" name='process_money' value="Find Gold!">
+            </form>
+        </div>
+        <div class='footer'>
+            <h4>Activites:</h4>
+            <div class='scroll_box' style="height:150px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond,
+            Serif;overflow:auto; margin-left: 51px;text-align: left;
+    padding-left: 10px;">
+                {% for activity in request.session.activity %}
+                <p>{{activity}}</p>
+                {%endfor%}
+            </div>
+
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>

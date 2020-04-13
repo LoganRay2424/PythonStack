@@ -1,0 +1,53 @@
+
+.container{
+    height: 1000px;
+    width: 1200px;
+    border: 1px dotted  black;
+    text-align: center;
+    background: url(download.png);
+}
+/* header */
+header{
+    text-align: left;
+    padding-left: 46px;
+    /* margin-top: 17px; */
+    padding-top: 30px;
+}
+header h4{
+    display: inline-block;
+    padding-right: 20px;
+}
+.count_box{
+    width: 200px;
+    height: 30px;
+    border: 2px solid black;
+    display: inline-block;
+    padding-left: 25px;
+    font-size: xx-large;
+    padding-bottom: 10px;
+}
+/* Main */
+.box{
+    border: 2px solid black;
+    display: inline-block;
+    width: 218px;
+    height: 170PX;
+    padding: 10px;
+    margin: 20px;
+
+}
+.box p{
+    padding-bottom: 28px;
+}
+/* Footer */
+.footer h4{
+    text-align: left;
+    margin-left: 51px;
+}
+span .count_box{
+    padding-left: 10px;
+}
+h3{
+    font-family: cursive;
+    font-size: x-large;
+}
