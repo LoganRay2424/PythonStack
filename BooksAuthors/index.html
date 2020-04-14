@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Add a Book</h2>
+        <form action="/book/new" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="title" class="form-control" value="{{title}}" id="title" placeholder="Enter title"
+                    name="title">
+            </div>
+            <div class="form-group shadow-textarea">
+                <label for="exampleFormControlTextarea6">Description</label>
+                <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" name="description"
+                    placeholder="Write something here..."></textarea>
+            </div>
+            <button action="Delete" type="submit" class="btn btn-primary">Add</button>
+        </form>
+        <br>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">View Book</th>
+                    <th scope="col">Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {%for book in books%}
+                <tr>
+                    <th scope="row">{{book.id}}</th>
+                    <td>{{book.title}}</td>
+                    <td><a href="/book/{{book.id}}">View</a></td>
+                    <td><button type="submit" class="btn btn-primary">Delete</button> </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+
+</html>
