@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <form action="/shows" method="POST">
+            {% csrf_token %}
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Network</th>
+                        <th scope="col">Release Date</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for show in shows %}
+                    <tr>
+                        <th scope="row">{{show.id}}</th>
+                        <td>{{show.title}}</td>
+                        <td>{{show.network}}</td>
+                        <td>{{show.release_date}}</td>
+                        <td><a href="/shows/{{show.id}}">Show | </a>
+                            <a href="/shows/{{show.id}}/edit">Edit | </a>
+                            <a href="/shows/{{show.id}}/delete">Delete</a></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+
+            </table>
+            <a href="/shows/new"><button type="button" class="btn btn-outline-primary">Add a New Show</button></a>
+        </form>
+    </div>
+</body>
+
+</html>

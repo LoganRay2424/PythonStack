@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Edit Show {{show.id}}</h1>
+
+        <br>
+        <form action="/shows/{{show.id}}/edit" method="POST">
+            {% csrf_token%}
+            <div class="form-group">
+                <label for="title"> Title</label>
+                <input type="text" value="{{title}}" name='title' class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Network</label>
+                <input type="text" class="network" name='network' value="{{show.network}}">
+            </div>
+            <div class="form-group row"></div>
+            <label for="release_date" class="release_date">Release Date</label>
+            <input class="form-control" type="date" name='release_date'>
+            <br>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Description</label>
+                <textarea class="form-control" name="desc" rows="3">{{show.desc}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Edit Show</button>
+            <a href="/shows"><button type="button" class="btn btn-outline-primary">Go Back</button></a>
+        </form>
+
+</body>
+
+</html>

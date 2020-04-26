@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>TV Show {{show.id}}</h1>
+            <div class="col-sm-6 d-flex justify-content-end">
+                <a href="/shows"><button type="button" class="btn btn-outline-primary">Go Back</button></a>
+            </div>
+        </div>
+        <br>
+        <div class="main">
+            <p>Title: {{show.title}}</p>
+            <br>
+            <p>Network: {{show.network}}</p>
+            <br>
+            <p>Release Date: {{show.release_date}}</p>
+            <br>
+            <p>Description: {{show.desc}}</p>
+        </div>
+        <div class="footer">
+            <p>Last Updated: {{show.updated_at}}</p>
+
+        </div>
+    </div>
+</body>
+
+</html>
