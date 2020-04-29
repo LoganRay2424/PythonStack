@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    {%csrf_token%}
+
+    <h1>Success!! Welcome,{{user.first_name}}</h1>
+    <button><a href="/logout">Logout</a></button>
+    <a href="/edit/{{user.id}}">Edit Account</a>
+
+    <div class="container">
+        <div class="col-md-6 gedf-main">
+            <!--- \\\\\\\Post-->
+            <div class="card gedf-card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
+                                aria-controls="posts" aria-selected="true">Add Author and Quote</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-danger">
+                    {%if messages%}
+                    <ul class="list-unstyled d-inline-block">
+                        {%for message in messages%}
+                        <li class="text-left">
+                            {{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <form action="/post_message" method="POST">
+                    {% csrf_token%}
+
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+
+                            <div class="tab-pane fade show active" id="posts" role="tabpanel"
+                                aria-labelledby="posts-tab">
+
+                                <div class="col-auto">
+                                    <label class="sr-only" for="inlineFormInput">Name</label>
+                                    <input type="text" name='author' class="form-control mb-2" id="inlineFormInput"
+                                        placeholder="Author">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <!-- MAKE A MESSAGE , WITH KEY AND VALUE -->
+                                    <textarea name="message" class="form-control" id="message" rows="3"
+                                        placeholder="Enter Quote"></textarea>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="btn-toolbar justify-content-between">
+                            <div class="btn-group">
+                                <!-- POST THE MESSAGE ON THE PAGE WHEN CLICKED -->
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        {%for message in message%}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Quotes</h5>
+                <p class="card-text">{{message.author}}:{{message.message}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Posted by <a
+                        href="/profile/{{message.user_related.id}}">{{message.user_related.first_name}}
+                        {{message.user_related.last_name}}</a>
+                </li>
+
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                {%if message.user_related.id == request.session.user_id%}
+                <form action="/delete_post/{{message.id}}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                </form>
+            </div>
+
+            {%endif%}
+        </div>
+        {%endfor%}
+
+    </div>
+</body>
+
+</html>

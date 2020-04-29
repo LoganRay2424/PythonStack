@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card bg-light">
+            <div class="text-danger">
+                {%if messages%}
+                <ul class="list-unstyled d-inline-block">
+                    {%for message in messages%}
+                    <li class="text-left">
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h2 class="card-title mt-3 text-center">Edit Account</h2>
+                <form action="/update/{{user.id}}/account" method="POST">
+                    {%csrf_token%}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="first_name" class="form-control" placeholder="First Name"
+                            value={{user.first_name}}>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="last_name" class="form-control" placeholder="Last Name" type="text"
+                            value={{user.last_name}}>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="email" class="form-control" placeholder="Email address" type="email"
+                            value={{user.email}}>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Update Account<a href='/success'>Log
+                                In</a>
+                        </button>
+                    </div>
+                </form>
+            </article>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
